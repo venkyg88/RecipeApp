@@ -1,6 +1,5 @@
 package fragments.venkat.com.myapplication;
 
-import android.support.v4.widget.TextViewCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +12,12 @@ import android.widget.TextView;
  */
 
 public class ListAdapter extends RecyclerView.Adapter {
+    private final ListFragment.onRecipeSelectedInterface mListner;
+
+    public ListAdapter(ListFragment.onRecipeSelectedInterface listener) {
+        mListner = listener;
+    }
+
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view= LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item, parent, false);
@@ -32,6 +37,7 @@ public class ListAdapter extends RecyclerView.Adapter {
     private class ListViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         private TextView mTextView;
         private ImageView mImageView;
+        private int mIndex;
         public ListViewHolder(View itemView) {
             super(itemView);
             mImageView = (ImageView) itemView.findViewById(R.id.imageView);
@@ -40,13 +46,14 @@ public class ListAdapter extends RecyclerView.Adapter {
         }
 
         public void bindView(int position) {
+            mIndex = position;
             mImageView.setImageResource(Recipes.resourceIds[position]);
             mTextView.setText(Recipes.names[position]);
         }
 
         @Override
         public void onClick(View v) {
-
+            mListner.onListRecepeSelected(mIndex);
         }
     }
 }
