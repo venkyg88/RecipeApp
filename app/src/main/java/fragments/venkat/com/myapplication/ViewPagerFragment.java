@@ -28,6 +28,9 @@ public class ViewPagerFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_viewpager, container, false);
 
         final IngridentsFragment ingridentsFragment = new IngridentsFragment();
+        Bundle bundle = new Bundle();
+        bundle.putInt(KEY_RECIPE_INDEX, index);
+        ingridentsFragment.setArguments(bundle);
         final DirectionsFragment directionsFragment = new DirectionsFragment();
 
         ViewPager viewPager = (ViewPager) view.findViewById(R.id.viewPager);
