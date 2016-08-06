@@ -13,43 +13,40 @@ import android.widget.LinearLayout;
  * Created by venkatgonuguntala on 8/2/16.
  */
 
-public class CheckBoxFragment extends Fragment {
-    public static final String CHECKED_BOX_STATE = "checked_box_state";
-    private CheckBox[] mCheckBox;
+public abstract class CheckBoxFragment extends Fragment {
+    private static final String KEY_CHECKED_BOXES = "key_checked_boxes";
+    private CheckBox[] mCheckBoxes;
 
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         int index = getArguments().getInt(ViewPagerFragment.KEY_RECIPE_INDEX);
         View view = inflater.inflate(R.layout.fragment_contents, container, false);
 
         LinearLayout linearLayout = (LinearLayout) view.findViewById(R.id.checkboxLayout);
-        String[] contents;
-        if (getArguments().getBoolean(ViewPagerFragment.IS_INGREDIENTS)) {
-            contents = Recipes.ingredients[index].split("`");
-        } else {
-            contents = Recipes.directions[index].split("`");
+        String[] contents = getContents(index);
+        mCheckBoxes = new CheckBox[contents.length];
+        boolean[] checkedBoxes = new boolean[mCheckBoxes.length];
+        if (savedInstanceState != null && savedInstanceState.getBooleanArray(KEY_CHECKED_BOXES) != null) {
+            checkedBoxes = savedInstanceState.getBooleanArray(KEY_CHECKED_BOXES);
         }
-        mCheckBox = new CheckBox[contents.length];
-        boolean [] checkBoxs = new boolean[mCheckBox.length];
-        if (savedInstanceState != null && savedInstanceState.getBooleanArray(CHECKED_BOX_STATE) != null) {
-            checkBoxs = savedInstanceState.getBooleanArray(CHECKED_BOX_STATE);
-        }
-        setUpCheckBoxes(contents, linearLayout, checkBoxs);
+        setUpCheckBoxes(contents, linearLayout, checkedBoxes);
 
         return view;
     }
 
-    private void setUpCheckBoxes(String[] contents, ViewGroup container, boolean[] checkBoxes) {
+    public abstract String[] getContents(int index);
+
+    private void setUpCheckBoxes(String[] contents, ViewGroup container, boolean[] checkedBoxes) {
         int i = 0;
         for (String content : contents) {
-            mCheckBox[i] = new CheckBox(getActivity());
-            mCheckBox[i].setPadding(8, 16, 8, 16);
-            mCheckBox[i].setTextSize(20f);
-            mCheckBox[i].setText(content);
-            container.addView(mCheckBox[i]);
-            if (mCheckBox[i].isChecked()){
-                mCheckBox[i].toggle();
+            mCheckBoxes[i] = new CheckBox(getActivity());
+            mCheckBoxes[i].setPadding(8, 16, 8, 16);
+            mCheckBoxes[i].setTextSize(20f);
+            mCheckBoxes[i].setText(content);
+            container.addView(mCheckBoxes[i]);
+            if (checkedBoxes[i]) {
+                mCheckBoxes[i].toggle();
             }
             i++;
         }
@@ -57,13 +54,13 @@ public class CheckBoxFragment extends Fragment {
 
     @Override
     public void onSaveInstanceState(Bundle outState) {
-        boolean[] checkBoxState = new boolean[mCheckBox.length];
+        boolean[] stateOfCheckBoxes = new boolean[mCheckBoxes.length];
         int i = 0;
-        for (CheckBox checkBox : mCheckBox ) {
-            checkBoxState[i] = checkBox.isChecked();
+        for (CheckBox checkBox : mCheckBoxes) {
+            stateOfCheckBoxes[i] = checkBox.isChecked();
             i++;
         }
-        outState.putBooleanArray(CHECKED_BOX_STATE, checkBoxState);
+        outState.putBooleanArray(KEY_CHECKED_BOXES, stateOfCheckBoxes);
         super.onSaveInstanceState(outState);
     }
 }
