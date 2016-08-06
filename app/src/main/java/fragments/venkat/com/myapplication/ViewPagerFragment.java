@@ -9,7 +9,6 @@ import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 /**
  * Created by venkatgonuguntala on 8/2/16.
@@ -18,20 +17,27 @@ import android.widget.Toast;
 public class ViewPagerFragment extends Fragment {
 
     public static final String KEY_RECIPE_INDEX = "recipe_index";
+    public static final String IS_INGREDIENTS = "is_ingredients_fragment";
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         int index = getArguments().getInt(KEY_RECIPE_INDEX);
-        //Toast.makeText(getActivity(), Recipes.names[index]+ "", Toast.LENGTH_LONG).show();
+
         getActivity().setTitle(Recipes.names[index]);
         View view = inflater.inflate(R.layout.fragment_viewpager, container, false);
 
-        final IngridentsFragment ingridentsFragment = new IngridentsFragment();
+        final CheckBoxFragment ingridentsFragment = new CheckBoxFragment();
         Bundle bundle = new Bundle();
         bundle.putInt(KEY_RECIPE_INDEX, index);
+        bundle.putBoolean(IS_INGREDIENTS, true);
         ingridentsFragment.setArguments(bundle);
-        final DirectionsFragment directionsFragment = new DirectionsFragment();
+
+        final CheckBoxFragment directionsFragment = new CheckBoxFragment();
+        bundle = new Bundle();
+        bundle.putInt(KEY_RECIPE_INDEX, index);
+        bundle.putBoolean(IS_INGREDIENTS, false);
+        directionsFragment.setArguments(bundle);
 
         ViewPager viewPager = (ViewPager) view.findViewById(R.id.viewPager);
         viewPager.setAdapter(new FragmentPagerAdapter(getChildFragmentManager()) {
