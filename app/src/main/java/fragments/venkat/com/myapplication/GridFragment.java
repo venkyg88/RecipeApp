@@ -11,31 +11,32 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-
 /**
- * Created by venkatgonuguntala on 8/1/16.
+ * Created by venkatgonuguntala on 8/6/16.
  */
-
-public class ListFragment extends Fragment {
-
+public class GridFragment extends Fragment {
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        onRecipeSelectedInterface listener = (onRecipeSelectedInterface) getActivity();
+        GridFragment.onRecipeSelectedInterface listener = (GridFragment.onRecipeSelectedInterface) getActivity();
         View view = inflater.inflate(R.layout.fragment_recyclerview, container, false);
 
         RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.recyclerView);
-        ListAdapter listAdapter = new ListAdapter(listener);
-        recyclerView.setAdapter(listAdapter);
+        GridAdapter gridAdapter = new GridAdapter(listener);
+        recyclerView.setAdapter(gridAdapter);
 
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
+        DisplayMetrics displayMetrics = getResources().getDisplayMetrics();
+        float dpWidth = displayMetrics.widthPixels / displayMetrics.density;
+
+        int numColumns = (int) (dpWidth / 200);
+        RecyclerView.LayoutManager layoutManager = new GridLayoutManager(getActivity(), numColumns);
         recyclerView.setLayoutManager(layoutManager);
 
         return view;
     }
 
     public interface onRecipeSelectedInterface {
-        void onListRecipeSelected(int index);
+        void onGridRecipeSelected(int index);
     }
 }
