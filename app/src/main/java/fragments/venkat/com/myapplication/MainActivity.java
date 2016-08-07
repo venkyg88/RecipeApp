@@ -61,6 +61,14 @@ public class MainActivity extends AppCompatActivity implements ListFragment.onRe
 
     @Override
     public void onGridRecipeSelected(int index) {
-
+        DualPaneFragment listFragment = new DualPaneFragment();
+        Bundle bundle = new Bundle();
+        bundle.putInt(ViewPagerFragment.KEY_RECIPE_INDEX, index);
+        listFragment.setArguments(bundle);
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.placeHolder, listFragment, VIEWPAGER);
+        fragmentTransaction.addToBackStack(null);
+        fragmentTransaction.commit();
     }
 }
