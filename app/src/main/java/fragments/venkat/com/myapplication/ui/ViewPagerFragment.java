@@ -43,20 +43,18 @@ public class ViewPagerFragment extends Fragment {
         viewPager.setAdapter(new FragmentPagerAdapter(getChildFragmentManager()) {
             @Override
             public android.support.v4.app.Fragment getItem(int position) {
-                return position == 0 ? ingridentsFragment : directionsFragment;
+                return (position == 0 ? ingridentsFragment : directionsFragment);
             }
 
             @Override
             public CharSequence getPageTitle(int position) {
-                CharSequence charSequence;
-                 charSequence = (position == 0 ? "Ingridents" : "Directions");
-                charSequence = (position == 2 ? "Ingridents" : "Directions");
-                return charSequence;
+                return position == 0 ? "Ingridents" : "Directions";
+
             }
 
             @Override
             public int getCount() {
-                return 4;
+                return 2;
             }
         });
 

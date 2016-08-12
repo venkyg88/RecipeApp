@@ -14,22 +14,24 @@ import fragments.venkat.com.myapplication.model.Result;
 /**
  * Created by venkatgonuguntala on 8/11/16.
  */
-public class BusinessListAdapter extends RecyclerView.Adapter {
+
+public class USListAdpater extends RecyclerView.Adapter {
+
     private List<Result> mResult;
 
-    public void setBusinessListAdapter(List<Result> results) {
+    public void setUSListAdapter(List<Result> results) {
         mResult = results;
     }
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.news_list_item, parent, false);
-        return new BusinessListAdapter.BusinessListViewHolder(view);
+        return new USListAdpater.USListViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-        ((BusinessListAdapter.BusinessListViewHolder) holder).bindView(position);
+        ((USListAdpater.USListViewHolder) holder).bindView(position);
     }
 
     @Override
@@ -40,10 +42,10 @@ public class BusinessListAdapter extends RecyclerView.Adapter {
         return 0;
     }
 
-    private class BusinessListViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    private class USListViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         private TextView mTitleTextView;
         private TextView mDateTextView;
-        public BusinessListViewHolder(View itemView) {
+        public USListViewHolder(View itemView) {
             super(itemView);
             mTitleTextView = (TextView) itemView.findViewById(R.id.itemTitle);
             mDateTextView = (TextView) itemView.findViewById(R.id.itemDatePublished);

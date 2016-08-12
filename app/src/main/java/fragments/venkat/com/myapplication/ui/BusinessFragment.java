@@ -13,13 +13,11 @@ import android.view.ViewGroup;
 import java.util.List;
 
 import fragments.venkat.com.myapplication.R;
-import fragments.venkat.com.myapplication.adapter.HealthListAdapter;
-import fragments.venkat.com.myapplication.adapter.USListAdpater;
+import fragments.venkat.com.myapplication.adapter.BusinessListAdapter;
 import fragments.venkat.com.myapplication.api.NewYorkTimesApi;
 import fragments.venkat.com.myapplication.controller.Access;
-import fragments.venkat.com.myapplication.model.Health;
+import fragments.venkat.com.myapplication.model.Business;
 import fragments.venkat.com.myapplication.model.Result;
-import fragments.venkat.com.myapplication.model.UnitedStates;
 import retrofit.Callback;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
@@ -30,39 +28,36 @@ import static fragments.venkat.com.myapplication.util.Constant.apiKey;
  * Created by venkatgonuguntala on 8/11/16.
  */
 
-public class UnitedStatesFragment  extends Fragment{
-    public static final String TAG = UnitedStates.class.getSimpleName();
+public class BusinessFragment extends Fragment {
+    private final static String TAG = PoliticsFragment.class.getSimpleName();
 
     private NewYorkTimesApi mNewYorkTimesApi;
-    private USListAdpater mUSListAdpater;
-
+    private BusinessListAdapter mBusinessListAdapter;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragmnt_unitedstates, container, false);
-
+        View view = inflater.inflate(R.layout.fragment_business, container, false);
         mNewYorkTimesApi = Access.getInstance().getNewYorkTimesAPi();
-        RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.recyclerViewUS);
-        mUSListAdpater = new USListAdpater();
-        getUSNews();
+        RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.recyclerViewBusiness);
+        mBusinessListAdapter = new BusinessListAdapter();
+        getBusiness();
 
-        recyclerView.setAdapter(mUSListAdpater);
-
+        recyclerView.setAdapter(mBusinessListAdapter);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(layoutManager);
 
         return view;
     }
 
-    private void getUSNews() {
+    private void getBusiness() {
 
-        mNewYorkTimesApi.getUnitedStatesCategory(apiKey, new Callback<UnitedStates>() {
+        mNewYorkTimesApi.getBusinessCategory(apiKey, new Callback<Business>() {
             @Override
-            public void success(UnitedStates health, Response response) {
-                List<Result> resultList = health.getResults();
+            public void success(Business business, Response response) {
+                List<Result> resultList = business.getResults();
 
-                mUSListAdpater.setUSListAdapter(resultList);
-                mUSListAdpater.notifyDataSetChanged();
+                mBusinessListAdapter.setBusinessListAdapter(resultList);
+                mBusinessListAdapter.notifyDataSetChanged();
             }
 
             @Override

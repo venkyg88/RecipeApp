@@ -1,5 +1,8 @@
 package fragments.venkat.com.myapplication.adapter;
 
+import android.os.Bundle;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,26 +13,30 @@ import java.util.List;
 
 import fragments.venkat.com.myapplication.R;
 import fragments.venkat.com.myapplication.model.Result;
+import fragments.venkat.com.myapplication.ui.DetailFragment;
+import fragments.venkat.com.myapplication.ui.NewsViewPagerFragment;
 
 /**
  * Created by venkatgonuguntala on 8/11/16.
  */
-public class BusinessListAdapter extends RecyclerView.Adapter {
+public class HealthListAdapter extends RecyclerView.Adapter{
+    public static final String TITLE = "title";
+    public static final String DATE_PUBLISHED = "date_published";
     private List<Result> mResult;
 
-    public void setBusinessListAdapter(List<Result> results) {
+    public void setHealthListAdapter(List<Result> results) {
         mResult = results;
     }
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.news_list_item, parent, false);
-        return new BusinessListAdapter.BusinessListViewHolder(view);
+        return new HealthListAdapter.HealthListViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-        ((BusinessListAdapter.BusinessListViewHolder) holder).bindView(position);
+        ((HealthListAdapter.HealthListViewHolder) holder).bindView(position);
     }
 
     @Override
@@ -40,10 +47,10 @@ public class BusinessListAdapter extends RecyclerView.Adapter {
         return 0;
     }
 
-    private class BusinessListViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    private class HealthListViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         private TextView mTitleTextView;
         private TextView mDateTextView;
-        public BusinessListViewHolder(View itemView) {
+        public HealthListViewHolder(View itemView) {
             super(itemView);
             mTitleTextView = (TextView) itemView.findViewById(R.id.itemTitle);
             mDateTextView = (TextView) itemView.findViewById(R.id.itemDatePublished);

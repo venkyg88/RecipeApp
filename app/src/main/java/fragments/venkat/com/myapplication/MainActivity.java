@@ -5,11 +5,16 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity implements ListFragment.onRecipeSelectedInterface, GridFragment.onRecipeSelectedInterface {
+import fragments.venkat.com.myapplication.ui.DualPaneFragment;
+import fragments.venkat.com.myapplication.ui.GridFragment;
+import fragments.venkat.com.myapplication.ui.ListFragment;
+import fragments.venkat.com.myapplication.ui.NewsViewPagerFragment;
+import fragments.venkat.com.myapplication.ui.ViewPagerFragment;
 
-    public static final String LIST_FRAGMENT = "list_fragment";
+public class MainActivity extends AppCompatActivity /*implements ListFragment.onRecipeSelectedInterface, GridFragment.onRecipeSelectedInterface*/ {
+
+    public static final String VIEW_PAGER_LIST_FRAGMENT = "list_fragment";
     public static final String VIEWPAGER = "viewpager";
     /*@Override
     public void onBackPressed() {
@@ -22,31 +27,30 @@ public class MainActivity extends AppCompatActivity implements ListFragment.onRe
         setContentView(R.layout.activity_main);
         boolean isTablet = getResources().getBoolean(R.bool.is_tablet);
 
-        if (!isTablet) {
-            ListFragment savedFragment = (ListFragment) getSupportFragmentManager().findFragmentByTag(LIST_FRAGMENT);
+        //if (!isTablet) { //code for phone
+            NewsViewPagerFragment savedFragment = (NewsViewPagerFragment) getSupportFragmentManager().findFragmentByTag(VIEWPAGER);
             if ( savedFragment == null) {
-                ListFragment listFragment = new ListFragment();
+                NewsViewPagerFragment viewPagerFragment = new NewsViewPagerFragment();
                 FragmentManager fragmentManager = getSupportFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.add(R.id.placeHolder, listFragment, LIST_FRAGMENT);
+                fragmentTransaction.add(R.id.placeHolder, viewPagerFragment, VIEW_PAGER_LIST_FRAGMENT);
                 fragmentTransaction.addToBackStack(null);
                 fragmentTransaction.commit();
             }
-        } else {
-            GridFragment savedFragment = (GridFragment) getSupportFragmentManager().findFragmentByTag(LIST_FRAGMENT);
+        //} else { //code for tablet
+           /* GridFragment savedFragment = (GridFragment) getSupportFragmentManager().findFragmentByTag(VIEWPAGER);
             if ( savedFragment == null) {
                 GridFragment gridFragment = new GridFragment();
                 FragmentManager fragmentManager = getSupportFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.add(R.id.placeHolder, gridFragment, LIST_FRAGMENT);
+                fragmentTransaction.add(R.id.placeHolder, gridFragment, VIEW_PAGER_LIST_FRAGMENT);
                 fragmentTransaction.addToBackStack(null);
                 fragmentTransaction.commit();
             }
-        }
-
+        }*/
     }
 
-    @Override
+    /*@Override
     public void onListRecipeSelected(int index) {
         ViewPagerFragment listFragment = new ViewPagerFragment();
         Bundle bundle = new Bundle();
@@ -70,5 +74,7 @@ public class MainActivity extends AppCompatActivity implements ListFragment.onRe
         fragmentTransaction.replace(R.id.placeHolder, listFragment, VIEWPAGER);
         fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
-    }
+    }*/
+
+
 }

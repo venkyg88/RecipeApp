@@ -9,27 +9,30 @@ import android.widget.TextView;
 import java.util.List;
 
 import fragments.venkat.com.myapplication.R;
+import fragments.venkat.com.myapplication.model.Politics;
 import fragments.venkat.com.myapplication.model.Result;
 
 /**
  * Created by venkatgonuguntala on 8/11/16.
  */
-public class BusinessListAdapter extends RecyclerView.Adapter {
+
+public class PoliticsListAdapter extends RecyclerView.Adapter {
+
     private List<Result> mResult;
 
-    public void setBusinessListAdapter(List<Result> results) {
+    public void setPoliticsListAdapter(List<Result> results) {
         mResult = results;
     }
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.news_list_item, parent, false);
-        return new BusinessListAdapter.BusinessListViewHolder(view);
+        return new PoliticsListViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-        ((BusinessListAdapter.BusinessListViewHolder) holder).bindView(position);
+        ((PoliticsListViewHolder) holder).bindView(position);
     }
 
     @Override
@@ -40,10 +43,10 @@ public class BusinessListAdapter extends RecyclerView.Adapter {
         return 0;
     }
 
-    private class BusinessListViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    private class PoliticsListViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         private TextView mTitleTextView;
         private TextView mDateTextView;
-        public BusinessListViewHolder(View itemView) {
+        public PoliticsListViewHolder(View itemView) {
             super(itemView);
             mTitleTextView = (TextView) itemView.findViewById(R.id.itemTitle);
             mDateTextView = (TextView) itemView.findViewById(R.id.itemDatePublished);

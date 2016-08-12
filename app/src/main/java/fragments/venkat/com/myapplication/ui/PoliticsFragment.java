@@ -13,13 +13,11 @@ import android.view.ViewGroup;
 import java.util.List;
 
 import fragments.venkat.com.myapplication.R;
-import fragments.venkat.com.myapplication.adapter.HealthListAdapter;
-import fragments.venkat.com.myapplication.adapter.USListAdpater;
+import fragments.venkat.com.myapplication.adapter.PoliticsListAdapter;
 import fragments.venkat.com.myapplication.api.NewYorkTimesApi;
 import fragments.venkat.com.myapplication.controller.Access;
-import fragments.venkat.com.myapplication.model.Health;
+import fragments.venkat.com.myapplication.model.Politics;
 import fragments.venkat.com.myapplication.model.Result;
-import fragments.venkat.com.myapplication.model.UnitedStates;
 import retrofit.Callback;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
@@ -30,23 +28,22 @@ import static fragments.venkat.com.myapplication.util.Constant.apiKey;
  * Created by venkatgonuguntala on 8/11/16.
  */
 
-public class UnitedStatesFragment  extends Fragment{
-    public static final String TAG = UnitedStates.class.getSimpleName();
+public abstract class PoliticsFragment extends Fragment {
+    private final static String TAG = PoliticsFragment.class.getSimpleName();
 
     private NewYorkTimesApi mNewYorkTimesApi;
-    private USListAdpater mUSListAdpater;
+    private PoliticsListAdapter mPoliticsListAdapter;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragmnt_unitedstates, container, false);
-
+        View view = inflater.inflate(R.layout.fragment_politics, container, false);
         mNewYorkTimesApi = Access.getInstance().getNewYorkTimesAPi();
-        RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.recyclerViewUS);
-        mUSListAdpater = new USListAdpater();
-        getUSNews();
+        RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.recyclerViewPolitics);
+        mPoliticsListAdapter = new PoliticsListAdapter();
+        getPolitics();
 
-        recyclerView.setAdapter(mUSListAdpater);
+        recyclerView.setAdapter(mPoliticsListAdapter);
 
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(layoutManager);
@@ -54,15 +51,15 @@ public class UnitedStatesFragment  extends Fragment{
         return view;
     }
 
-    private void getUSNews() {
+    private void getPolitics() {
 
-        mNewYorkTimesApi.getUnitedStatesCategory(apiKey, new Callback<UnitedStates>() {
+        mNewYorkTimesApi.getPoliticsCategory(apiKey, new Callback<Politics>() {
             @Override
-            public void success(UnitedStates health, Response response) {
-                List<Result> resultList = health.getResults();
+            public void success(Politics politics, Response response) {
+                List<Result> resultList = politics.getResults();
 
-                mUSListAdpater.setUSListAdapter(resultList);
-                mUSListAdpater.notifyDataSetChanged();
+                mPoliticsListAdapter.setPoliticsListAdapter(resultList);
+                mPoliticsListAdapter.notifyDataSetChanged();
             }
 
             @Override
@@ -71,4 +68,5 @@ public class UnitedStatesFragment  extends Fragment{
             }
         });
     }
+
 }
