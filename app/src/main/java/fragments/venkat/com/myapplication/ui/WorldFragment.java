@@ -4,8 +4,8 @@ import android.util.Log;
 
 import java.util.List;
 
-import fragments.venkat.com.myapplication.model.Politics;
 import fragments.venkat.com.myapplication.model.Result;
+import fragments.venkat.com.myapplication.model.UnitedStates;
 import retrofit.Callback;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
@@ -16,16 +16,16 @@ import static fragments.venkat.com.myapplication.util.Constant.apiKey;
  * Created by venkatgonuguntala on 8/11/16.
  */
 
-public class PoliticsFragment extends BaseFragment {
-    private final static String TAG = PoliticsFragment.class.getSimpleName();
+public class WorldFragment extends BaseFragment{
+    public static final String TAG = UnitedStates.class.getSimpleName();
 
-    @Override
+
     public void getHeadlinesFromApi() {
 
-        mNewYorkTimesApi.getPoliticsCategory(apiKey, new Callback<Politics>() {
+        mNewYorkTimesApi.getUnitedStatesCategory(apiKey, new Callback<UnitedStates>() {
             @Override
-            public void success(Politics politics, Response response) {
-                List<Result> resultList = politics.getResults();
+            public void success(UnitedStates health, Response response) {
+                List<Result> resultList = health.getResults();
 
                 mHeadLinesListAdapter.setResultsList(resultList);
                 mHeadLinesListAdapter.notifyDataSetChanged();
@@ -36,9 +36,5 @@ public class PoliticsFragment extends BaseFragment {
                 Log.e(TAG, error+"Retrofit Failure");
             }
         });
-    }
-
-    public interface onHeadLinesSelectedInterface {
-        void onHeadLinesItemSelected(int index);
     }
 }

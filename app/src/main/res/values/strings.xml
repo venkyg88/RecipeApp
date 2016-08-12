@@ -2,6 +2,6 @@
     <string name="app_name">NYTimes</string>
     <string name="title_section1">Politics</string>
     <string name="title_section2">Business</string>
-    <string name="title_section3">U.S.</string>
+    <string name="title_section3">World</string>
     <string name="title_section4">Health</string>
 </resources>

@@ -1,27 +1,28 @@
 package fragments.venkat.com.myapplication.adapter;
 
+import android.support.v4.app.ListFragment;
+
 import fragments.venkat.com.myapplication.R;
-import fragments.venkat.com.myapplication.ui.ListFragment;
+import fragments.venkat.com.myapplication.ui.PoliticsFragment;
 
 /**
- * Created by venkatgonuguntala on 8/1/16.
+ * Created by venkatgonuguntala on 8/12/16.
  */
 
-public class ListAdapter extends RecyclerViewAdapter {
-    private final ListFragment.onRecipeSelectedInterface mListner;
+public class ListAdapter extends HeadLinesListAdapter {
+    private final PoliticsFragment.onHeadLinesSelectedInterface mListener;
 
-    public ListAdapter(ListFragment.onRecipeSelectedInterface listener) {
-        mListner = listener;
+    public ListAdapter(PoliticsFragment.onHeadLinesSelectedInterface listener) {
+        mListener = listener;
     }
 
     @Override
     protected int getLayout() {
-        return R.layout.list_item;
+        return R.layout.news_list_item;
     }
 
     @Override
-    protected void onRecipeSelected(int index) {
-        mListner.onListRecipeSelected(index);
+    protected void onHeadLinesItemSelected(int index) {
+        mListener.onHeadLinesItemSelected(index);
     }
-
 }

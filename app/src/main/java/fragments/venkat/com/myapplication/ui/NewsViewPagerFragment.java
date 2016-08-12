@@ -27,7 +27,7 @@ public class NewsViewPagerFragment extends Fragment {
 
         final PoliticsFragment politicsFragment = new PoliticsFragment();
         final HealthFragment healthFragment = new HealthFragment();
-        final UnitedStatesFragment unitedStatesFragment = new UnitedStatesFragment();
+        final WorldFragment unitedStatesFragment = new WorldFragment();
         final BusinessFragment businessFragment = new BusinessFragment();
 
 
