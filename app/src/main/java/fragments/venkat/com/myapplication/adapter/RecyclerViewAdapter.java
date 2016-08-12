@@ -1,4 +1,4 @@
-package fragments.venkat.com.myapplication;
+package fragments.venkat.com.myapplication.adapter;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -6,6 +6,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import fragments.venkat.com.myapplication.R;
+import fragments.venkat.com.myapplication.Recipes;
 
 /**
  * Created by venkatgonuguntala on 8/1/16.
@@ -15,7 +18,7 @@ public abstract class RecyclerViewAdapter extends RecyclerView.Adapter {
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view= LayoutInflater.from(parent.getContext()).inflate(getLayout(), parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(getLayout(), parent, false);
         return new ListViewHolder(view);
     }
 

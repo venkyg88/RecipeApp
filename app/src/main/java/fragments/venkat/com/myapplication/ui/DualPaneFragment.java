@@ -1,4 +1,4 @@
-package fragments.venkat.com.myapplication;
+package fragments.venkat.com.myapplication.ui;
 
 import android.support.v4.app.FragmentManager;
 import android.os.Bundle;
@@ -7,6 +7,9 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import fragments.venkat.com.myapplication.R;
+import fragments.venkat.com.myapplication.Recipes;
 
 /**
  * Created by venkatgonuguntala on 8/7/16.

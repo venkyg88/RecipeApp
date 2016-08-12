@@ -1,4 +1,4 @@
-package fragments.venkat.com.myapplication;
+package fragments.venkat.com.myapplication.ui;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -8,6 +8,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.LinearLayout;
+
+import fragments.venkat.com.myapplication.R;
+import fragments.venkat.com.myapplication.ui.ViewPagerFragment;
 
 /**
  * Created by venkatgonuguntala on 8/2/16.

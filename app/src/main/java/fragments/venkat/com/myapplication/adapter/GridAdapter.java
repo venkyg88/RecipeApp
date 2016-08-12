@@ -1,4 +1,7 @@
-package fragments.venkat.com.myapplication;
+package fragments.venkat.com.myapplication.adapter;
+
+import fragments.venkat.com.myapplication.R;
+import fragments.venkat.com.myapplication.ui.GridFragment;
 
 /**
  * Created by venkatgonuguntala on 8/7/16.

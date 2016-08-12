@@ -1,4 +1,4 @@
-package fragments.venkat.com.myapplication;
+package fragments.venkat.com.myapplication.ui;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -9,6 +9,9 @@ import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import fragments.venkat.com.myapplication.R;
+import fragments.venkat.com.myapplication.Recipes;
 
 /**
  * Created by venkatgonuguntala on 8/2/16.
@@ -45,12 +48,15 @@ public class ViewPagerFragment extends Fragment {
 
             @Override
             public CharSequence getPageTitle(int position) {
-                return position == 0 ? "Ingridents" : "Directions";
+                CharSequence charSequence;
+                 charSequence = (position == 0 ? "Ingridents" : "Directions");
+                charSequence = (position == 2 ? "Ingridents" : "Directions");
+                return charSequence;
             }
 
             @Override
             public int getCount() {
-                return 2;
+                return 4;
             }
         });
 

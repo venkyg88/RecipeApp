@@ -1,4 +1,7 @@
-package fragments.venkat.com.myapplication;
+package fragments.venkat.com.myapplication.ui;
+
+import fragments.venkat.com.myapplication.Recipes;
+import fragments.venkat.com.myapplication.ui.CheckBoxFragment;
 
 /**
  * Created by venkatgonuguntala on 8/6/16.
