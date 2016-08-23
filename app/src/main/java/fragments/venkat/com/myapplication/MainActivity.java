@@ -1,6 +1,7 @@
 package fragments.venkat.com.myapplication;
 
 
+
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
@@ -22,7 +23,7 @@ public class MainActivity extends AppCompatActivity implements ListFragment.onRe
         setContentView(R.layout.activity_main);
         boolean isTablet = getResources().getBoolean(R.bool.is_tablet);
 
-        if (!isTablet) {
+        if (!isTablet) { //code for phone
             ListFragment savedFragment = (ListFragment) getSupportFragmentManager().findFragmentByTag(LIST_FRAGMENT);
             if ( savedFragment == null) {
                 ListFragment listFragment = new ListFragment();
@@ -32,7 +33,7 @@ public class MainActivity extends AppCompatActivity implements ListFragment.onRe
                 fragmentTransaction.addToBackStack(null);
                 fragmentTransaction.commit();
             }
-        } else {
+        } else { //code for tablet
             GridFragment savedFragment = (GridFragment) getSupportFragmentManager().findFragmentByTag(LIST_FRAGMENT);
             if ( savedFragment == null) {
                 GridFragment gridFragment = new GridFragment();
@@ -71,4 +72,6 @@ public class MainActivity extends AppCompatActivity implements ListFragment.onRe
         fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
     }
+
+
 }

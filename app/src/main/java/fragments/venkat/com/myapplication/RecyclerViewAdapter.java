@@ -15,7 +15,7 @@ public abstract class RecyclerViewAdapter extends RecyclerView.Adapter {
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view= LayoutInflater.from(parent.getContext()).inflate(getLayout(), parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(getLayout(), parent, false);
         return new ListViewHolder(view);
     }
 
